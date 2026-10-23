@@ -1,0 +1,16 @@
+Original contributions by tutifrutas are licensed under BSD-3-Clause; see LICENSE.
+That grant covers only work owned by that contributor.
+
+This project includes source derived from:
+https://github.com/shihabal3amri/tekken-tag-tournament-2-pc
+https://github.com/mahmoud-mess/tekken6-recomp
+
+These upstream repositories do not declare source-code licenses. Inherited code,
+including the STFS/archive preparation helpers, LZX container logic and disc
+extraction utility, is not relicensed by this repository's LICENSE. Public
+redistribution requires permission from the applicable rights holders or an
+applicable upstream license. A public GitHub repository alone is not such a grant.
+
+The separately fetched ReXGlue SDK, XenonRecomp and their dependencies retain
+their own licenses and notices. No license here grants rights to game executables,
+generated guest code, game assets, title updates or trademarks.

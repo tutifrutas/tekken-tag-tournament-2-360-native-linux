@@ -1,0 +1,11 @@
+# Tekken Tag Tournament 2 TU3 ReXGlue project.
+
+[project]
+name = "ttt2"
+sdk_version = "0.10.0"
+game_root = "game"
+
+[entrypoint]
+file_path = "game/default.xex"
+out_directory_path = "generated/default"
+includes = ["ttt2_config.toml"]

@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.25)
+project(ttt2_data_tools LANGUAGES C CXX)
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(XENON_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../XenonRecomp" CACHE PATH "XenonRecomp source")
+set(U "${XENON_ROOT}/XenonUtils")
+set(T "${XENON_ROOT}/thirdparty")
+add_subdirectory(../xdvdfs xdvdfs)
+add_executable(ttt2_patch_xex patch_xex.cpp "${U}/xex_patcher.cpp" "${U}/memory_mapped_file.cpp"
+    "${T}/tiny-AES-c/aes.c" "${T}/libmspack/libmspack/mspack/lzxd.c")
+target_include_directories(ttt2_patch_xex PRIVATE "${U}" "${T}/tiny-AES-c" "${T}/TinySHA1" "${T}/libmspack/libmspack/mspack")
+add_executable(ttt2_expand_lzx expand_lzx.cpp "${T}/libmspack/libmspack/mspack/lzxd.c")
+target_include_directories(ttt2_expand_lzx PRIVATE "${T}/libmspack/libmspack/mspack")
