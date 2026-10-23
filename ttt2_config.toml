@@ -10,6 +10,11 @@ non_volatile_as_local = false
 
 # Direct branch targets reported by RexGlue validation in the TU3 image.
 [functions]
+# Leaf parser dispatcher installed by sub_82C78BE8 at object+36 and called
+# indirectly at 0x82C7872C. Its lis/addi pair is separated by two stores,
+# so the conservative immediate-address scan did not discover it.
+"0x82C77940" = { name = "sub_82C77940" }
+
 # Worker callback observed during native startup after the TU3 volume mount.
 "0x82333130" = { name = "sub_82333130" }
 "0x82A9B398" = { name = "sub_82A9B398" }

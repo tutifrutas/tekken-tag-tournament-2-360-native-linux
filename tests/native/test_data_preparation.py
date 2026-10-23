@@ -74,6 +74,16 @@ class DataPreparationTest(unittest.TestCase):
         self.assertGreater((ROOT / 'game/update/data100.bin').stat().st_size, 0)
         self.assertGreater((ROOT / 'game/update/data100.ofs').stat().st_size, 0)
 
+    def test_parser_callback_coverage(self):
+        # The parser installs this callback indirectly; it must be an explicit
+        # codegen entry even when the conservative address scan misses it.
+        config = tomllib.loads((ROOT / 'ttt2_config.toml').read_text())
+        self.assertIn('0x82C77940', config['functions'], 'Missing parser callback hint')
+        self.assertEqual(config['functions']['0x82C77940']['name'], 'sub_82C77940')
+        generated = ROOT / 'generated/default/ttt2_init.cpp'
+        if generated.is_file():
+            self.assertIn('{ 0x82C77940, sub_82C77940 }', generated.read_text())
+
     @unittest.skipUnless((ROOT / 'generated/default/ttt2_init.cpp').is_file(), 'requires local codegen')
     def test_overlap_branch_uses_emitting_function(self):
         # Before the TTT2 SDK repair this emitted REX_FATAL even though the
